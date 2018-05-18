@@ -367,9 +367,9 @@
                 height: dropHeight + "px"
             });
 
-            dropWrapper.find(".ui-dropdownchecklist-dropcontainer").css({
-                height: dropHeight + "px"
-            });
+//            dropWrapper.find(".ui-dropdownchecklist-dropcontainer").css({
+//                height: dropHeight + "px"
+//            });
         },
         // Initializes the plugin
         _init: function() {
