@@ -371,7 +371,7 @@
             var selectOptions = sourceSelect.get(0).options;
             var allCheckboxes = dropWrapper.find("input.active");
             if (options.firstItemChecksAll == 'exclusive') {
-                if ((senderCheckbox == null) && $(selectOptions[0]).is("[selected]") ) {
+                if ((senderCheckbox == null) && $(selectOptions[0]).prop("selected") ) {
                     // Initialization call with first item active
                     allCheckboxes.prop("checked", true);
                     $(allCheckboxes[0]).prop("checked", true);
@@ -437,7 +437,7 @@
                     empties += 1;
                     anOption = $(selectOptions[index + empties]);
                 }
-                anOption.attr("selected", $(this).prop("checked"));
+                anOption.prop("selected", $(this).prop("checked"));
             });
             // update the text shown in the control
             self._updateControlText();
@@ -751,7 +751,7 @@
                 var opt = $(this);
                 var disabled = opt.prop("disabled");
                 if (opt.is("option")) {
-                    var selected = opt.is("[selected]");
+                    var selected = opt.prop("selected");
                     var anItem = $(allCheckBoxes[optionCount]);
                     self._refreshOption(anItem, disabled, selected);
                     optionCount += 1;
