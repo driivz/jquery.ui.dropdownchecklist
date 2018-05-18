@@ -382,16 +382,24 @@
                 } else  {
                     // check the first checkbox if all the other checkboxes are checked
                     var allChecked = true;
+                    var noneChecked = true;
                     var firstCheckbox = null;
 
                     allCheckboxes.each(function(index) {
                         if (index > 0) {
                             var checked = $(this).prop("checked");
-                            if (!checked) { allChecked = false; }
+                            if (!checked) {
+                                allChecked = false;
+                            } else {
+                                noneChecked = false;
+                            }
                         } else {
                             firstCheckbox = $(this);
                         }
                     });
+                    if(noneChecked)
+                        allChecked = true;
+
                     if ( firstCheckbox != null ) {
                         if ( allChecked ) {
                             // when all are checked, only the first left checked
