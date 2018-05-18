@@ -126,7 +126,7 @@
             // clicking on the control toggles the drop container
             $wrapper.click(function(event) {
                 if (!self.disabled) {
-                    event.stopImmediatePropagation();
+                    //event.stopImmediatePropagation();
                     self._toggleDropContainer( !self.dropWrapper.isOpen );
                 }
             });
@@ -520,7 +520,8 @@
                         anIcon.removeClass( (config.icon.toClose != null) ? config.icon.toClose : "ui-icon-triangle-1-s");
                         anIcon.addClass( (config.icon.toOpen != null) ? config.icon.toOpen : "ui-icon-triangle-1-e");
                     }
-                    $(document).unbind("click", hide);
+
+                    $(document).unbind("click");
 
                     // keep the items out of the tab order by disabling them
                     instance.dropWrapper.find("input.active").prop("disabled",true);
@@ -590,7 +591,12 @@
                         anIcon.removeClass( (config.icon.toOpen != null) ? config.icon.toOpen : "ui-icon-triangle-1-e");
                         anIcon.addClass( (config.icon.toClose != null) ? config.icon.toClose : "ui-icon-triangle-1-s");
                     }
-                    $(document).bind("click", function(e) {hide(instance);} );
+
+                    setTimeout(function () {
+                        $(document).bind("click", function(e) {
+                            hide(instance);
+                        });
+                    }, 1);
 
                     // insert the items back into the tab order by enabling all active ones
                     var activeItems = instance.dropWrapper.find("input.active");
