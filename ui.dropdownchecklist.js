@@ -371,7 +371,7 @@
             var selectOptions = sourceSelect.get(0).options;
             var allCheckboxes = dropWrapper.find("input.active");
             if (options.firstItemChecksAll == 'exclusive') {
-                if ((senderCheckbox == null) && $(selectOptions[0]).prop("selected") ) {
+                if ((senderCheckbox == null) && $(selectOptions[0]).is("[selected]") ) {
                     // Initialization call with first item active
                     allCheckboxes.prop("checked", true);
                     $(allCheckboxes[0]).prop("checked", true);
@@ -382,7 +382,6 @@
                 } else  {
                     // check the first checkbox if all the other checkboxes are checked
                     var allChecked = true;
-                    var noneChecked = true;
                     var firstCheckbox = null;
 
                     allCheckboxes.each(function(index) {
@@ -390,15 +389,11 @@
                             var checked = $(this).prop("checked");
                             if (!checked) {
                                 allChecked = false;
-                            } else {
-                                noneChecked = false;
                             }
                         } else {
                             firstCheckbox = $(this);
                         }
                     });
-                    if(noneChecked)
-                        allChecked = true;
 
                     if ( firstCheckbox != null ) {
                         if ( allChecked ) {
@@ -442,7 +437,7 @@
                     empties += 1;
                     anOption = $(selectOptions[index + empties]);
                 }
-                anOption.prop("selected", $(this).prop("checked"));
+                anOption.attr("selected", $(this).prop("checked"));
             });
             // update the text shown in the control
             self._updateControlText();
@@ -756,7 +751,7 @@
                 var opt = $(this);
                 var disabled = opt.prop("disabled");
                 if (opt.is("option")) {
-                    var selected = opt.prop("selected");
+                    var selected = opt.is("[selected]");
                     var anItem = $(allCheckBoxes[optionCount]);
                     self._refreshOption(anItem, disabled, selected);
                     optionCount += 1;
