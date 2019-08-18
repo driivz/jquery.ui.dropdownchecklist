@@ -554,11 +554,14 @@
 	                });
                      ****/
                     if ((config.positionHow == null) || (config.positionHow == 'absolute')) {
+                        var rect_elem = instance.controlWrapper[0].getBoundingClientRect();
+                        var rect_parent = instance.controlWrapper.offsetParent()[0].getBoundingClientRect();
+                        var position = {top: rect_elem.top - rect_parent.top, left: rect_elem.left - rect_parent.left};
                         /** Floats above subsequent content, but does NOT scroll */
                         instance.dropWrapper.css({
                             position: 'absolute'
-                            ,   top: instance.controlWrapper.position().top + instance.controlWrapper.outerHeight() + "px"
-                            ,   left: instance.controlWrapper.position().left + "px"
+                            ,   top: position.top + instance.controlWrapper.outerHeight() + "px"
+                            ,   left: position.left + "px"
                         });
                     } else if (config.positionHow == 'relative') {
                         /** Scrolls with the parent but does NOT float above subsequent content */
